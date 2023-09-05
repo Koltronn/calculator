@@ -1,0 +1,47 @@
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 150px;
+}
+
+.outputContainer {
+    min-height: 100px;
+    min-width: 600px;
+    border: 2px solid black;
+    margin-bottom: 0px;
+    border-radius: 4px;
+}
+
+.btnContainer {
+    display: flex;
+    max-width: 600px;
+    flex-wrap: wrap;
+    border: 2px solid black;
+    border-radius: 4px;
+}
+
+button {
+    height: 80px;
+    font-size: 50px;
+    background-color: rgb(146, 140, 133);
+    color:rgb(255, 255, 255);
+}
+
+.numbtn {
+    width: 200px;
+}
+
+.oppbtn {
+    width: 150px;
+}
+
+#zero {
+    min-width: 600px;
+}
+
+.clrbtn,
+.eqlbtn {
+    width: 300px;
+}
