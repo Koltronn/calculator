@@ -1,6 +1,7 @@
-let firstNumber ='';
+let secondNum ='';
 let operator = '';
-let secondNumber = '';
+let firstNum = '';
+let inOperation = '';
 
 function add(a,b){
     return a + b;
@@ -20,37 +21,56 @@ function divide(a,b){
 
 function operate(a, operator, b){
     if(operator === '+'){
-        return add(a,b)
+        return add(a,b);
     } else if(operator === '-'){
-        return subtract(a,b)
+        return subtract(a,b);
     } else if(operator === '/'){
-        return divide(a,b)
+        return divide(a,b);
     } else if(operator === '*'){
-        return multiply(a,b)
+        return multiply(a,b);
     }
 }
-let lowerDisplay = document.querySelector('h1');
+let display = document.querySelector('.display')
 
 let numberButtons = document.querySelectorAll('.numbtn');
 numberButtons.forEach((button) =>
         button.addEventListener('click', function eventHandler(){
-            lowerDisplay.textContent += button.textContent
+            display.textContent += button.textContent;
+            secondNum += button.textContent;
         })
 )
 
 let operatorButtons = document.querySelectorAll('.oppbtn');
 operatorButtons.forEach((button) =>
         button.addEventListener('click', function eventHandler(){
-            lowerDisplay.textContent += button.textContent
+            if(firstNum === ''){
+                operator = button.textContent;
+                display.textContent += operator
+                firstNum = secondNum;
+                secondNum = '';
+            } else {
+                display.textContent = operate(parseInt(firstNum), operator, parseInt(secondNum)) + button.textContent;
+                firstNum = operate(parseInt(firstNum), operator, parseInt(secondNum)) 
+                operator = button.textContent;
+                secondNum = ''
+            }
         })
 )
 
 let clearButton = document.querySelector('.clrbtn');
 clearButton.addEventListener('click', function eventHandler(){
-    lowerDisplay.textContent = ''
+    display.textContent = '';
+    secondNum = '';
+    firstNum = '';
 })
 
-let equalButton = document.querySelector('.eqlbtn');
-equalButton.addEventListener('click', function eventHandler(){
-    lowerDisplay.textContent += equalButton.textContent
-})
+function equals(){
+    let equalButton = document.querySelector('.eqlbtn');
+    equalButton.addEventListener('click', function eventHandler(){
+            secondNum = operate(parseInt(firstNum), operator, parseInt(secondNum));
+            display.textContent = secondNum;
+            firstNum = '';
+    })
+}
+
+equals()
